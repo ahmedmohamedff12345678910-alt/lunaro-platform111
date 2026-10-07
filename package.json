@@ -1,0 +1,30 @@
+{
+  "name": "lunaro",
+  "version": "1.0.0",
+  "description": "Lunaro Digital Studio - Premium Technology Solutions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend && npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend",
+    "test": "npm run test --workspace=backend",
+    "db:migrate": "npm run migrate --workspace=backend",
+    "db:seed": "npm run seed --workspace=backend",
+    "db:studio": "npm run studio --workspace=backend",
+    "install": "npm install && npm install --workspace=frontend && npm install --workspace=backend"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "keywords": [
+    "lunaro",
+    "digital",
+    "studio",
+    "agency",
+    "technology"
+  ],
+  "author": "Lunaro Team",
+  "license": "MIT"
+}
