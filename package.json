@@ -1,30 +1,25 @@
 {
-  "name": "lunaro",
-  "version": "1.0.0",
-  "description": "Lunaro Digital Studio - Premium Technology Solutions",
+  "name": "lunaro-platform111",
   "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "npm run dev --workspace=frontend && npm run dev --workspace=backend",
-    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
-    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend",
-    "test": "npm run test --workspace=backend",
-    "db:migrate": "npm run migrate --workspace=backend",
-    "db:seed": "npm run seed --workspace=backend",
-    "db:studio": "npm run studio --workspace=backend",
-    "install": "npm install && npm install --workspace=frontend && npm install --workspace=backend"
-  },
+  "version": "1.0.0",
   "workspaces": [
     "frontend",
     "backend"
   ],
-  "keywords": [
-    "lunaro",
-    "digital",
-    "studio",
-    "agency",
-    "technology"
-  ],
-  "author": "Lunaro Team",
-  "license": "MIT"
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:frontend dev:backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend",
+    "db:migrate": "npm run prisma:migrate --workspace=backend",
+    "db:seed": "npm run prisma:seed --workspace=backend",
+    "db:studio": "npm run prisma:studio --workspace=backend"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
