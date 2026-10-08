@@ -1,9 +1,7 @@
-import { Router } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
-const router = Router();
-
-router.get('/health', (_req, res) => {
-  res.status(200).json({ status: 'ok', service: 'auth' });
-});
-
-export default router;
+export function errorHandler(err: unknown, _req: Request, res: Response, _next: NextFunction) {
+  console.error('Error:', err);
+  const message = err instanceof Error ? err.message : 'حدث خطأ غير متوقع';
+  res.status(500).json({ message });
+}

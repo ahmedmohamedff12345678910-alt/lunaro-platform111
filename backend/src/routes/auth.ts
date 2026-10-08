@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { prisma } from '../lib/prisma.js';
-import { buildWelcomeEmail, sendTransactionalMail } from '../lib/mail.js';
+import { sendTransactionalMail, buildWelcomeEmail, buildContactReceiptEmail } from '../lib/mail.js';
 import { hash } from 'bcryptjs';
 
 const router = Router();
 
 const registerSchema = z.object({
-  fullName: z.string().min(2, 'اسمك الكامل مطلوب'),
+  fullName: z.string().min(2, 'الاسم قصير جدا'),
   email: z.string().email('البريد الإلكتروني غير صحيح'),
   password: z.string().min(8, 'كلمة المرور يجب أن تكون 8 أحرف على الأقل'),
 });
@@ -36,7 +36,7 @@ router.post('/register', async (req, res, next) => {
 
     await sendTransactionalMail({
       to: email,
-      subject: 'مرحباً بك في Lunaro',
+      subject: 'مرحبا بك في Lunaro',
       html: buildWelcomeEmail(fullName, email),
     });
 
@@ -51,6 +51,10 @@ router.post('/register', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+router.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok', service: 'auth' });
 });
 
 export default router;
