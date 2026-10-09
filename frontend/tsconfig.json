@@ -18,7 +18,6 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "listFilesOnly": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
